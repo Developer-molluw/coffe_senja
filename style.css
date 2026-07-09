@@ -1,0 +1,604 @@
+/* ===== Reset dasar ===== */
+/* Menyamakan persepsi semua browser di awal agar tampilan dasar bersih */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden; /* Mencegah screen bisa digeser ke samping (biar tidak bocor/rusak layoutnya) */
+    background: #f5f5f5;
+    scroll-behavior: smooth;
+}
+
+/* ===== Navbar ===== */
+/* Menata menu navigasi bagian atas agar menempel di layar saat di-scroll */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000; /* Menjamin posisi menu selalu berada di layer paling atas menutupi konten */
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(14px); /* Membuat efek kaca blur transparan */
+    -webkit-backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(246, 243, 238, 0.08);
+    transition: background 0.35s ease, border-color 0.35s ease, padding 0.35s ease;
+}
+
+.navbar__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex; /* Flexbox membuat isi di dalamnya otomatis berjejer rapi sampingan */
+    align-items: center;
+    justify-content: space-between; /* Logo di kiri, Menu Link di kanan */
+    padding: 22px 32px;
+    transition: padding 0.35s ease;
+    font-family: sans-serif;
+}
+
+.navbar__logo {
+    font-family: sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: #f6f3ee;
+    text-decoration: none;
+}
+
+.navbar__nav {
+    display: flex;
+    gap: 40px; /* Jarak antar link menu */
+}
+
+.navbar__nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    position: relative;
+    opacity: 0.85;
+    transition: opacity 0.25s ease;
+}
+
+/* Membuat garis bawah variasi estetik saat menu didekati cursor */
+.navbar__nav a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -6px;
+    width: 0;
+    height: 1px;
+    background: #c9a24b;
+    transition: width 0.3s ease;
+}
+
+.navbar__nav a:hover {
+    opacity: 1;
+}
+
+.navbar__nav a:hover::after {
+    width: 100%;
+}
+
+/* ===== Toggle (hamburger) — mobile & tablet ===== */
+/* Tombol garis tiga ikon menu di HP (Bawaannya disembunyikan dulu di layar laptop) */
+.navbar__toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 32px;
+    height: 32px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.navbar__toggle span {
+    display: block;
+    width: 100%;
+    height: 1.5px;
+    background: #f6f3ee;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Mengubah garis hamburger menjadi tanda silang (X) ketika dibuka/aktif */
+.navbar__toggle.active span:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+}
+
+.navbar__toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.navbar__toggle.active span:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+}
+
+/* ===== Responsif Ukuran Layar Tablet ===== */
+@media (max-width: 900px) {
+    .navbar__inner {
+        padding: 18px 24px;
+    }
+
+    .navbar__nav {
+        gap: 24px;
+    }
+
+    .navbar__nav a {
+        font-size: 13px;
+    }
+}
+
+/* ===== Responsif Ukuran Layar HP (Mobile) ===== */
+@media (max-width: 700px) {
+    .navbar__toggle {
+        display: flex; /* Memunculkan tombol garis tiga di HP */
+    }
+
+    /* Mengubah menu atas menjadi menu geser/slide-out dari sisi samping kanan */
+    .navbar__nav {
+        position: fixed;
+        top: 0;
+        right: 0;
+        height: 100vh;
+        width: min(78vw, 320px);
+        background-color: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        gap: 32px;
+        padding: 0 44px;
+        transform: translateX(100%); /* Sembunyi ke kanan luar layar */
+        transition: transform 0.4s ease;
+    }
+
+    /* Membuka menu slide-out */
+    .navbar__nav.open {
+        transform: translateX(0);
+    }
+
+    .navbar__nav a {
+        font-size: 16px;
+    }
+
+    .hero__overlay {
+        font-size: 20px;
+        width: 90%;
+        padding: 16px 20px;
+    }
+}
+
+/* ===== Untuk Whatsapp Icon Pop Up ===== */
+/* Container Utama Tombol Melayang */
+.whatsapp-floating {
+    position: fixed;
+    bottom: 25px; /* Jarak dari bawah layar */
+    right: 25px;  /* Jarak dari kanan layar */
+    background-color: #25d366; /* Warna khas WhatsApp */
+    color: white;
+    padding: 12px 20px;
+    border-radius: 50px; /* Membuat bentuknya kapsul lonjong */
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Jarak antara icon WA dan tulisan */
+    text-decoration: none;
+    font-family: sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2); /* Efek bayangan biar timbul */
+    z-index: 9999; /* Memastikan tombol selalu di paling depan, tidak tertutup elemen lain */
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    animation: pulseWA 2s infinite; /* Efek animasi berdenyut halus */
+}
+
+/* Efek saat tombol diarahkan kursor (Hover) */
+.whatsapp-floating:hover {
+    background-color: #20ba56; /* Warna agak gelap dikit saat di-hover */
+    transform: scale(1.05); /* Tombol membesar sedikit */
+    color: white;
+}
+
+/* Mengatur ukuran icon SVG di dalam tombol */
+.whatsapp-floating svg {
+    width: 22px;
+    height: 22px;
+}
+
+/* Logika Animasi Pulse (Berdenyut) pada tombol WA */
+@keyframes pulseWA {
+    0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+    }
+    70% {
+        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    }
+}
+
+/* Responsif WA Button: Di HP, tulisannya disembunyikan agar jadi bulat saja */
+@media (max-width: 480px) {
+    .whatsapp-floating {
+        padding: 12px;
+        bottom: 20px;
+        right: 20px;
+    }
+    .whatsapp-floating span {
+        display: none; /* Menghilangkan tulisan "Hubungi Kami" di HP */
+    }
+}
+
+/* ===== Hero Section CSS ===== */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Mengisi 100% tinggi layar browser */
+    overflow: hidden;
+}
+
+/* Gambar Hero Pembuka */
+.hero__img {
+    width: 100%;
+    max-width: 100%;
+    height: 100%;
+    object-fit: cover; /* Memastikan gambar proporsional & memenuhi layar tanpa penyok/gepeng */
+    display: block;
+}
+
+/* Box Teks Transparan Panjang di Tengah Banner */
+.hero__overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Menaruh tepat presisi di tengah banner */
+    background-color: rgba(0, 0, 0, 0.4); /* Transparansi hitam tipis */
+    width: 80%;
+    max-width: 1000px;
+    padding: 24px 40px;
+    border-radius: 4px;
+    color: #ffffff;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    text-align: center;
+    letter-spacing: 0.05em;
+}
+
+/* ===== Isi Contents == parents-container-main== ===== */
+.parents-container-main {
+    font-family: 'Montserrat', sans-serif;
+}
+
+.parents-conatiner-core {
+    margin: 20px 40px;
+}
+
+.parents-conatiner-core {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* Bagian Judul Utama */
+.services-header {
+    margin-bottom: 50px;
+    text-align: left;
+}
+
+.services-sub {
+    color: #00c1b2;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.services-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 32px;
+    color: #111111;
+    font-weight: 700;
+}
+
+/* Pengaturan Tata Letak Grid Jasa (3 Kolom Sejajar Laptop) */
+.services-grid {
+    display: grid; /* Sistem CSS Grid */
+    grid-template-columns: repeat(3, 1fr); /* Membagi 3 kolom sama rata panjangnya */
+    column-gap: 60px; /* Jarak ke samping antar kolom */
+    row-gap: 50px;    /* Jarak atas-bawah antar baris */
+    margin-bottom: 20px;
+}
+
+/* Style Tiap Box Jasa Item */
+.service-item {
+    text-align: left;
+    cursor: pointer; /* Kursor berubah jadi icon tangan tanda interaktif */
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+/* Efek sedikit terangkat ke atas saat mouse mendekat */
+.service-item:hover {
+    transform: translateY(-3px);
+    opacity: 0.9;
+}
+
+/* Penataan Icon */
+.service-icon {
+    font-size: 35px;
+    color: #20b2aa;
+    margin-bottom: 15px;
+}
+
+/* Judul Layanan Item */
+.service-name {
+    font-family: 'Space Grotesk', sans-serif;
+    color: #00c1b2;
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+/* Deskripsi Detail Layanan */
+.service-desc {
+    color: #555555;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+}
+
+/* Responsif Grid Jasa di Tablet (Menjadi 2 Kolom) */
+@media (max-width: 900px) {
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 30px;
+    }
+}
+
+/* Responsif Grid Jasa di HP (Menjadi 1 Kolom berurutan kebawah) */
+@media (max-width: 600px) {
+    .services-grid {
+        grid-template-columns: 1fr;
+        row-gap: 40px;
+    }
+    .services-title {
+        font-size: 24px;
+    }
+}
+
+/* ===== Bagian Dokumentasi Galeri Portfolio ===== */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Default laptop: 3 Kolom gambar */
+    gap: 20px; /* Jarak antar celah gambar */
+}
+
+.gallery-item {
+    width: 100%;
+    overflow: hidden;
+    border-radius: 8px; /* Sudut lengkung gambar tipis */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 3 / 4; /* Mengunci rasio potrait tegak (3 lebar : 4 tinggi) */
+    object-fit: cover; /* Otomatis terpotong rapi tanpa penyet */
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+/* Efek gambar membesar (zoom in) anggun pas di-hover cursor */
+.gallery-item:hover img {
+    transform: scale(1.03);
+}
+
+/* Galeri di Layar Tablet (Menjadi 2 Kolom) */
+@media (max-width: 900px) {
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+}
+
+/* Galeri di Layar HP (Menjadi 1 Kolom bertumpuk) */
+@media (max-width: 500px) {
+    .gallery-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+}
+
+.text-tittle-layanan-mutiaraprinting {
+    padding: 10px 0px;
+    font-size: 24px;
+    color: rgb(0, 193, 178);
+}
+
+/* Reset Box Sizing tambahan agar layout aman terkendali kalkulasinya */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* Base Style Card Utama Selengkapnya (Tampilan Horizontal Lebar) */
+.card-horizontal {
+    display: flex; /* Menggunakan Flexbox menyamping */
+    flex-direction: row;
+    width: 100%;
+    max-width: 900px;
+    margin: 30px auto;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+/* Bagian Sisi Kiri Gambar Card */
+.card-horizontal__image-wrapper {
+    flex: 0 0 40%; /* Mengunci lebar porsi gambar sebesar 40% */
+    background-color: #f5f5f5;
+}
+
+.card-horizontal__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    min-height: 250px;
+}
+
+/* Bagian Sisi Kanan Detail Tulisan Card */
+.card-horizontal__content {
+    flex: 1; /* Mengisi sisa ruang kosong (60%) */
+    padding: 30px;
+    display: flex;
+    flex-direction: column; /* Menyusun isi teks ke arah bawah */
+    justify-content: center;
+}
+
+.card-horizontal__tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    color: #e67e22;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.card-horizontal__title {
+    font-size: 22px;
+    color: #2c3e50;
+    margin: 0 0 12px 0;
+    line-height: 1.3;
+}
+
+.card-horizontal__desc {
+    font-size: 14px;
+    color: #7f8c8d;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Desain Tombol Hijau Pesan Sekarang */
+.card-horizontal__btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #27ae60;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 14px;
+    border-radius: 6px;
+    transition: background 0.3s ease;
+    align-self: flex-start; /* Mengunci lebar tombol sepanjang isi teks saja */
+}
+
+.card-horizontal__btn:hover {
+    background-color: #219150;
+}
+
+/* Merubah Card Horizontal menjadi Vertikal di Layar HP */
+@media screen and (max-width: 576px) {
+    .card-horizontal {
+        flex-direction: column; /* Mengubah susunan menyamping jadi bertumpuk atas-bawah di HP */
+        max-width: 95%;
+    }
+
+    .card-horizontal__image-wrapper {
+        flex: 0 0 auto;
+        width: 100%;
+    }
+
+    .card-horizontal__img {
+        height: 200px;
+    }
+
+    .card-horizontal__content {
+        padding: 20px;
+    }
+
+    .card-horizontal__title {
+        font-size: 18px;
+    }
+
+    .card-horizontal__btn {
+        align-self: stretch; /* Tombol melebar full di HP agar gampang dipencet jempol */
+        text-align: center;
+    }
+}
+
+/* ===== Footer CSS ===== */
+.footer {
+    background-color: #111111;
+    color: #ffffff;
+    padding: 60px 0 20px 0;
+    font-family: 'Space Grotesk', sans-serif;
+}
+
+.footer-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap; /* Supaya otomatis turun ke bawah kalau space layar tidak muat */
+    justify-content: space-between;
+    gap: 30px;
+    padding: 0 20px;
+}
+
+.footer-column {
+    flex: 1;
+    min-width: 200px;
+}
+
+.footer-column h3 {
+    font-size: 18px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    color: #f4f4f4;
+}
+
+.footer-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-column li {
+    margin-bottom: 12px;
+}
+
+.footer-column a {
+    color: #bbbbbb;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-size: 15px;
+}
+
+.footer-column a:hover {
+    color: #ffffff;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 50px;
+    border-top: 1px solid #222;
+    padding-top: 20px;
+    font-size: 14px;
+    color: #666;
+}
