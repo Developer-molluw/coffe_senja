@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CoffeSenja</title>
+  <!-- Tambahan Google Fonts biar font-nya estetik ala cafe -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&family=Poppins:wght@300;400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="app_kedai.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap"
+    rel="stylesheet">
+
+  <!-- Trik CSS untuk membuat efek scroll menjadi halus -->
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <!-- Logo Kedai Kopi -->
+    <div class="logo">Coffe<span>Senja</span></div>
+
+    <!-- Checkbox Trik untuk Hamburger -->
+    <input type="checkbox" id="click">
+    <label for="click" class="menu-btn">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </label>
+
+    <!-- Menu Links -->
+    <ul class="nav-links">
+      <li><a class="active" href="#">Home</a></li>
+      <li><a href="#menu-kopi">Menu</a></li>
+      <li><a href="#tentang-kami">Our Story</a></li>
+      <li><a href="#galeri">Galeri</a></li>
+      <li><a href="#kontak">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO SECTION (Gambar ditimpa Teks & Tombol) -->
+  <header class="hero">
+    <div class="hero-content">
+      <h5>Selamat Datang di CoffeSenja</h5>
+      <h1>Temukan Rasa Kopi <br><span>Terbaikmu Di Sini</span></h1>
+      <p>Dibuat dengan biji kopi pilihan dari petani lokal, diseduh dengan cinta untuk menemani setiap cerita hangatmu.
+      </p>
+      <div class="hero-buttons">
+        <!-- href diarahkan ke ID section di bawah -->
+        <a href="#tentang-kami" class="btn btn-primary">Jelajahi</a>
+        <a href="#menu-kopi" class="btn btn-secondary">Menu</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Ditambahkan id="tentang-kami" -->
+  <section id="tentang-kami" class="konten-untuk-cards">
+    <div class="custom-card-container">
+      <!-- SISI KIRI: Konten Teks -->
+      <div class="card-content">
+        <span class="card-tag">Tempat Cerita Dimulai</span>
+        <h2 class="card-title">Lebih dari Sekadar Secangkir Kopi</h2>
+        <p class="card-text">
+          Temukan sudut ternyamanmu di sini. Temani obrolan seru, tumpukan tugas kuliah, atau *deadline* kerjamu dengan
+          racikan kopi pilihan dan suasana hangat yang bikin betah berlama-lama.
+        </p>
+        <a href="#menu-kopi" class="card-btn">Lihat Menu Kami</a>
+      </div>
+      <!-- SISI KANAN: Tempat Gambar -->
+      <div class="card-image-wrapper">
+        <img src="nugasnongrkrong.png" alt="Preview Konten" class="card-image" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Ditambahkan id="menu-kopi" -->
+  <section id="menu-kopi" class="menu-opsi">
+    <h2 class="class-opsi-menu">Pilihan Menu</h2>
+
+    <div class="menu-card-container">
+      <div class="menu-card" onclick="window.location.href='coffee.html';">
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=600" alt="Coffee">
+        <div class="menu-card-title">Coffee</div>
+      </div>
+
+      <div class="menu-card" onclick="window.location.href='dessert.html';">
+        <img src="https://cdn.pixabay.com/photo/2022/11/08/05/06/bread-7577706_1280.jpg" alt="Dessert">
+        <div class="menu-card-title">Dessert</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="event-section">
+    <!-- KONTEN STATIS -->
+    <div class="event-static-content">
+      <h2>List Event Dari Kami</h2>
+      <p>Temukan berbagai keseruan dan promo menarik di kafe kami minggu ini.</p>
+      <div class="event-buttons">
+        <a href="event.html" class="btn-event">Lihat Event</a>
+        <a href="menu.html" class="btn-menu">Lihat Menu</a>
+      </div>
+    </div>
+
+    <!-- SLIDER GAMBAR -->
+    <div class="event-slider-container">
+      <div class="event-slider">
+        <!-- Slide 1 -->
+        <div class="event-slide">
+          <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1200" alt="Cafe Ambience">
+        </div>
+        <!-- Slide 2 -->
+        <div class="event-slide">
+          <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?w=1200" alt="Barista Brew">
+        </div>
+        <!-- Slide 3 -->
+        <div class="event-slide">
+          <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=1200" alt="Latte Art">
+        </div>
+        <!-- Slide 4 -->
+        <div class="event-slide">
+          <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=1200" alt="Sweet Pastry">
+        </div>
+        <!-- Slide 5 -->
+        <div class="event-slide">
+          <img src="https://images.unsplash.com/photo-1524350876685-274059332603?w=1200" alt="Work from Cafe">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ditambahkan id="galeri" -->
+  <div id="galeri">
+    <h2 class="gallery-grid-tittle" style="text-align: center; margin-top: 20px; color: rgb(236 160 86);">Galeri Kami
+    </h2>
+    <div class="gallery-grid">
+      <!-- Card 1 sampai 9 tetap sama -->
+      <div class="gallery-card"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=600"
+          alt="Kopi 1"></div>
+      <div class="gallery-card"><img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=600"
+          alt="Kopi 2"></div>
+      <div class="gallery-card"><img src="https://images.unsplash.com/photo-1534778101976-62847782c213?q=80&w=600"
+          alt="Kopi 3"></div>
+      <div class="gallery-card"><img src="https://images.unsplash.com/photo-1541167760496-1628856ab772?q=80&w=600"
+          alt="Kopi 4"></div>
+      <div class="gallery-card"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=600"
+          alt="Kopi 5"></div>
+      <div class="gallery-card"><img src="https://images.unsplash.com/photo-1578314675249-a6910f80cc4e?q=80&w=600"
+          alt="Kopi 6"></div>
+      <div class="gallery-card"><img src="https://images.unsplash.com/photo-1517701604599-bb29b565090c?q=80&w=600"
+          alt="Kopi 7"></div>
+      <div class="gallery-card"><img src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=600"
+          alt="Kopi 8"></div>
+      <div class="gallery-card"><img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?q=80&w=600"
+          alt="Kopi 9"></div>
+    </div>
+  </div>
+
+  <!-- Ditambahkan id="kontak" -->
+  <footer id="kontak" class="main-footer">
+    <div class="footer-container">
+      <div class="footer-logo">☕ KopiKita</div>
+      <div class="footer-links">
+        <a href="#">Beranda</a>
+        <a href="#tentang-kami">Tentang Kami</a>
+        <a href="#kontak">Kontak</a>
+      </div>
+      <div class="footer-copyright">
+        &copy; 2026 KopiKita Gallery. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+ <script src="app.js"></script>
+</body>
+
+</html>
