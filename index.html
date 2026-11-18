@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Tic Tac Toe Ungu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css">
+</head>
+
+<body>
+  <header class="nav">
+    <div class="nav-in">
+      <div class="brand">
+        <img src="Logo Corel Jip.png" alt="Logo" onerror="this.style.visibility='hidden'">
+        <span>Tic Tac Toe</span>
+      </div>
+
+      <button class="burger" id="burger" aria-label="Buka menu" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav id="menu" aria-label="Navigasi utama">
+        <button class="nl on" data-go="home">
+          <i class="fi fi-sr-home"></i>
+          <span>Beranda</span>
+        </button>
+
+        <button class="nl" data-go="group">
+          <i class="fi fi-sr-users"></i>
+          <span>Anggota Kami</span>
+        </button>
+
+        <button class="nl" data-go="about">
+          <i class="fi fi-sr-info"></i>
+          <span>Tentang Kami</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <!-- Beranda -->
+    <section id="home">
+      <h1>Tic Tac Toe</h1>
+      <p class="sub">Pilih mode, tingkat AI, lalu ukuran papan.</p>
+      <div class="lbl">Mode permainan</div>
+      <div class="seg" id="segMode"><button class="on" data-v="ai">Lawan AI🤖</button><button data-v="pvp">2
+          Pemain🥊</button></div>
+      <div id="lvlWrap">
+        <div class="lbl">Tingkat AI</div>
+        <div class="seg" id="segLvl"><button data-v="low">Rendah</button><button class="on"
+            data-v="mid">Sedang</button><button data-v="high">Sulit</button></div>
+      </div>
+      <div class="lbl">Ukuran papan</div>
+      <div class="opts">
+        <button class="opt" data-r="3" data-c="3" data-k="3">
+          <div class="mini" style="grid-template-columns:repeat(3,1fr)">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div><b>3 × 3</b><span>Klasik. Susun 3 berurutan.</span></div>
+        </button>
+        <button class="opt" data-r="4" data-c="4" data-k="4">
+          <div class="mini" style="grid-template-columns:repeat(4,1fr)">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <div><b>4 × 4</b><span>Lebih luas. Susun 4 berurutan.</span></div>
+        </button>
+        <button class="opt" data-r="4" data-c="6" data-k="4">
+          <div class="mini" style="grid-template-columns:repeat(6,1fr)">
+            <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <div><b>6 × 4</b><span>6 kolom, 4 baris. Susun 4 berurutan.</span></div>
+        </button>
+      </div>
+    </section>
+
+    <!-- Game -->
+    <section id="game" class="hidden">
+      <div class="top">
+        <button class="btn home-btn" id="back" aria-label="Kembali ke Beranda">
+          <p>Beranda</p>
+          <i class="fi fi-sr-home"></i>
+        </button>
+        <strong id="mode"></strong>
+      </div>
+      <div class="score">
+        <div class="sc" id="sx"><small id="lx">Pemain X</small><strong id="vx">0</strong></div>
+        <div class="sc"><small>Seri</small><strong id="vd">0</strong></div>
+        <div class="sc" id="so"><small id="lo">Pemain O</small><strong id="vo">0</strong></div>
+      </div>
+      <div class="status" id="status" aria-live="polite"></div>
+      <div class="board" id="board"></div>
+      <div class="actions">
+        <button class="btn primary" id="again">Ronde baru</button>
+        <button class="btn" id="reset">Reset skor</button>
+      </div>
+    </section>
+
+    <!-- Group -->
+    <section id="group" class="hidden">
+      <h1>Anggota Kami</h1>
+      <p class="sub">Anggota tim pembuat game ini.</p>
+      <div class="members">
+        <div class="member">
+          <div class="avatar">A</div>
+          <div><b>I Gede Adi Prasatya</b></div>
+        </div>
+        <div class="member">
+          <div class="avatar">B</div>
+          <div><b>I Pande Kade Kresna Dwipa Pengsu</b></div>
+        </div>
+        <div class="member">
+          <div class="avatar">C</div>
+          <div><b>I Wayan Suarbawa</b></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tentang Kami -->
+    <section id="about" class="hidden">
+      <h1>Tentang Kami</h1>
+      <p class="sub">Sedikit cerita di balik game ini.</p>
+      <div class="devcard">
+        <h2>Tic Tac Toe Ungu</h2>
+        <p>Tic Tac Toe Ungu merupakan permainan strategi sederhana yang dikembangkan sebagai proyek pembelajaran. Game
+          ini menghadirkan pengalaman bermain Tic Tac Toe dengan tampilan bernuansa ungu yang modern, sederhana, dan
+          mudah digunakan.
+
+          Permainan ini dirancang agar dapat dimainkan sendiri melawan AI maupun bersama teman dalam satu perangkat.</p>
+      </div>
+      <div class="devcard">
+        <h2>Fitur</h2>
+        <p>Lawan AI: Tersedia tiga tingkat kesulitan, mulai dari mudah hingga sulit.</p>
+        <p>2 Pemain: Bermain bersama teman secara bergantian.</p>
+        <p>Pilihan Papan: Tersedia tiga ukuran papan, yaitu 3 × 3, 4 × 4, dan 6 × 4.</p>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
